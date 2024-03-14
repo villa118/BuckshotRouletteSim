@@ -25,7 +25,7 @@ public class Player {
             System.out.println("Blank");
             System.out.println(p.toString());
         }
-        if(b == 1){
+        else if(b == 1){
             System.out.println("Live");
             System.out.println(p.toString());
         }
