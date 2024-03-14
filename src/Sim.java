@@ -1,7 +1,22 @@
+/**
+ * Sim class
+ * <p>
+ *     Class used to run simulations of games.
+ * </p>
+ */
+
+
 import java.util.ArrayList;
 
 public class Sim {
 
+    /**
+     * runSimpleSim method has no decision logic, Player objects simply shoots at their opponents
+     * using 5 randomly generated lives or blanks that reloads (regenerates random bullets) every 5 shots.
+     * Game ends when a player's health reaches 0.
+     * @param count int number of simulations to be run.
+     * @return String that displays the amount of wins each player recorded.
+     */
     public static String runSimpleSim( int count){
         int p1WinCount = 0;
         int p2WinCount = 0;
@@ -28,16 +43,6 @@ public class Sim {
                         p2WinCount++;
                         break;
                     }
-                   /* p1.shoot(p2, bullets[i]);
-                    if (p2.getHealth() == 0) {
-                        p1WinCount++;
-                        break;
-                    }
-                    p2.shoot(p1, bullets[i + 1]);
-                    if (p1.getHealth() == 0) {
-                        p2WinCount++;
-                        break;
-                    }*/
                 }
             }
             count--;
@@ -46,6 +51,12 @@ public class Sim {
 
     }
 
+    /**
+     * runPeekSim method has simple logic to decide whether to target self or opponent
+     * based on how many blanks are left in the chamber. Otherwise, behaves the same as the simpleSim
+     * @param count number of simulations to be run.
+     * @return String that displays the amount of wins each player recorded.
+     */
     public static String runPeekSim(int count) {
         int p1WinCount = 0;
         int p2WinCount = 0;
@@ -112,6 +123,7 @@ public class Sim {
         }
         else return 0;
     }
+
 
     public static int takeTurnPeek(Player p1, Player p2, int[]bullets, int index){
         if(index >= bullets.length-1)
