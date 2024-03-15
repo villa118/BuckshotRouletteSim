@@ -22,16 +22,13 @@ public class Player {
     public void shoot(Player p, int b){
         p.setHealth(p.getHealth() - b);
         if(b == 0) {
-            System.out.println("Blank");
-            System.out.println(p.toString());
+            System.out.println(this.getName() + " shoots " + p.getName() + " with a blank. " + p.getHealth() + " health remains.");
         }
         else if(b == 1){
-            System.out.println("Live");
-            System.out.println(p.toString());
+            System.out.println(this.getName() + " shoots " + p.getName()  + " with a live round. " + p.getHealth() + " health remains.");
         }
         else System.out.println("Invalid number");
     }
-
     public void setHealth(int health) {
         this.health = health;
     }
