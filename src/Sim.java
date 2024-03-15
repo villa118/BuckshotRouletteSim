@@ -24,7 +24,7 @@ public class Sim {
         Player p1 = new Player("Player");
         Player p2 = new Player("Dealer");
         while (count > 0) {
-            startNewRun(p1,p2,5);
+            startNewGame(p1,p2,5);
             while (p1.getHealth() > 0 && p2.getHealth() > 0) {
                 int[] bullets = reload(HAND_SIZE);
                 shotsFired = 0;
@@ -33,11 +33,13 @@ public class Sim {
                     shotsFired += (takeTurnSimple(p1, p2, bullets, shotsFired));
                     if (p2.getHealth() == 0) {
                         p1WinCount++;
+                        displayGameOver(p1,p2,p1WinCount);
                         break;
                     }
                     shotsFired += (takeTurnSimple(p2, p1, bullets, shotsFired));
                     if (p1.getHealth() == 0) {
                         p2WinCount++;
+                        displayGameOver(p2, p1, p2WinCount);
                         break;
                     }
                 }
@@ -62,7 +64,7 @@ public class Sim {
         Player p1 = new Player("Player");
         Player p2 = new Player("Dealer");
         while (count > 0) {
-            startNewRun(p1,p2,5);
+            startNewGame(p1,p2,5);
             while (p1.getHealth() > 0 && p2.getHealth() > 0) {
                 int[] bullets = reload(HAND_SIZE);
                 shotsFired =0;
@@ -71,11 +73,13 @@ public class Sim {
                     shotsFired += (takeTurnSimple(p1, p2, bullets, shotsFired));
                     if (p2.getHealth() == 0) {
                         p1WinCount++;
+                        displayGameOver(p1,p2,p1WinCount);
                         break;
                     }
                     shotsFired += (takeDealerTurn(p2, p1, bullets, shotsFired));
                     if (p1.getHealth() == 0) {
                         p2WinCount++;
+                        displayGameOver(p2, p1, p2WinCount);
                         break;
                     }
                 }
@@ -100,7 +104,7 @@ public class Sim {
         Player p1 = new Player("Player");
         Player p2 = new Player("Dealer");
         while (count > 0) {
-            startNewRun(p1,p2,5);
+            startNewGame(p1,p2,5);
             while (p1.getHealth() > 0 && p2.getHealth() > 0) {
                 int[] bullets = reload(HAND_SIZE);
                 shotsFired = 0;
@@ -109,11 +113,13 @@ public class Sim {
                     shotsFired += (takeTurnPeek(p1, p2, bullets, shotsFired));
                     if (p2.getHealth() == 0) {
                         p1WinCount++;
+                        displayGameOver(p1,p2,p1WinCount);
                         break;
                     }
                     shotsFired += (takeTurnPeek(p2, p1, bullets, shotsFired));
                     if (p1.getHealth() == 0) {
                         p2WinCount++;
+                        displayGameOver(p2, p1, p2WinCount);
                         break;
                     }
                 }
@@ -135,7 +141,7 @@ public class Sim {
         Player p1 = new Player("Player");
         Player p2 = new Player("Dealer");
         while (count > 0) {
-            startNewRun(p1,p2,5);
+            startNewGame(p1,p2,5);
             while (p1.getHealth() > 0 && p2.getHealth() > 0) {
                 int[] bullets = reload(HAND_SIZE);
                 shotsFired = 0;
@@ -144,11 +150,13 @@ public class Sim {
                     shotsFired += (takeTurnPeek(p1, p2, bullets, shotsFired));
                     if (p2.getHealth() == 0) {
                         p1WinCount++;
+                        displayGameOver(p1,p2,p1WinCount);
                         break;
                     }
                     shotsFired += (takeDealerTurn(p2, p1, bullets, shotsFired));
                     if (p1.getHealth() == 0) {
                         p2WinCount++;
+                        displayGameOver(p2, p1, p2WinCount);
                         break;
                     }
                 }
@@ -165,8 +173,8 @@ public class Sim {
      * @param p2 Player object
      * @param health int value used to set the players' health
      */
-    public static void startNewRun(Player p1, Player p2, int health){
-        System.out.println("************NEW RUN***************");
+    public static void startNewGame(Player p1, Player p2, int health){
+        System.out.println("*****************NEW GAME*****************");
         p1.setHealth(health);
         p2.setHealth(health);
         System.out.println(p1+ " " + p2);
@@ -199,6 +207,12 @@ public class Sim {
             System.out.printf("%d ", a);
         }
         System.out.print("]");
+        System.out.println();
+    }
+    public static void displayGameOver(Player winner, Player loser, int wins){
+        System.out.println();
+        System.out.println(loser.getName() + " has been killed, " + winner.getName() + " has won " + wins + " times.");
+        System.out.println("*****************GAME OVER*****************");
         System.out.println();
     }
 
