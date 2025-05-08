@@ -313,6 +313,7 @@ public class Sim {
             if (bullets[index] == 0) {
                 return 1 + takeTurnPeek(p1, p2, bullets, index + 1);
             }
+            return 1;
         }
         return takeTurnSimple(p1, p2, bullets, index);
     }
