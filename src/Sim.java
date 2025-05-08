@@ -223,9 +223,9 @@ public class Sim {
      */
     public static int[] reload(int size) {
         int[] bullets = new int[size];
-        for (int i = 0; i < bullets.length - 1; i++) {
+        for (int i = 0; i < bullets.length; i++) {
             //generates a random number from 0-100, if it's odd, the next number in the array will be a 1, else 0
-            if ((int) (Math.random() * 100 % 2) != 0) {
+            if (Math.random() < 0.5) {
                 bullets[i] = 1;
             }
             else {
@@ -243,7 +243,7 @@ public class Sim {
      */
     public static int sumHand(int[] a, int index) {
         int sum = 0;
-        for (int i = index; i < a.length - 1; i++) {
+        for (int i = index; i < a.length; i++) {
             if (a[i] == 0) {
                 sum++;
             }
@@ -262,13 +262,14 @@ public class Sim {
      */
     public static int takeTurnSimple(Player p1, Player p2, int[] bullets, int index) {
         //take no shot if out of bounds or one of the players is dead.
-        if(index > bullets.length-1 || p1.getHealth() == 0 || p2.getHealth() == 0){
+        if(index > bullets.length - 1 || p1.getHealth() == 0 || p2.getHealth() == 0){
             return 0;
         }
         //The last round in the chamber, by process of elimination is known, so take the optimal choice.
-        if(index == bullets.length-1){
-            if(bullets[index] == 1){
-                return takeTurnSimple(p1,p2,bullets,index);
+        if (index == bullets.length - 1) {
+            if (bullets[index] == 1) {
+                p1.shoot(p2, bullets[index]);
+                return 1;
             }
             return shootSelf(p1, bullets, index);
         }
